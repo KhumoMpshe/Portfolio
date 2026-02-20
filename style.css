@@ -59,3 +59,10 @@ header {
   background: grey;
   opacity: 80%;
 }
+
+.scrolling {
+  background: grey;
+  opacity: 80%;
+  transition: all 0.5s;
+}
+

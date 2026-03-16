@@ -25,14 +25,26 @@
   
     
     <header class="px-5 p-3 text-white fixed-top scrolling">
-      <div>
-        <h3 class="float-md-start text-center">Portfolio</h3>
-        <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#about-us">About</a>
-          <a class="nav-link" href="#projects">Projects</a>
-          <a class="nav-link" href="#contact">Contact</a>
-        </nav>
+      <div class="d-flex align-items-center justify-content-between gap-3">
+        <h3 class="mb-0">Portfolio</h3>
+        <div class="d-flex align-items-center flex-wrap gap-2">
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="#about-us">About</a>
+            <a class="nav-link" href="#projects">Projects</a>
+            <a class="nav-link" href="#contact">Contact</a>
+          </nav>
+
+          <a href="resume.html" class="btn btn-outline-light btn-sm ms-2 no-print">
+            <i class="bi bi-printer-fill me-1"></i>
+            Print Resume
+          </a>
+
+          <button id="theme-toggle" class="btn btn-outline-light btn-sm no-print" type="button">
+            <i class="bi bi-sun-fill me-1"></i>
+            <span>Light</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -95,7 +107,7 @@
               <div class="card-body">
                 <h5 class="card-title">Netflix Landing Page</h5>
                 <p class="card-text">Built this with HTML & CSS</p>
-                <a href="https://secondcloneproject.netlify.app/" target="_blank" class="btn btn-dark">View Website</a>
+                <a href="https://secondcloneproject.netlify.app/" target="_blank" class="btn btn-outline-dark">View Website</a>
                 <a href="https://github.com/KhumoMpshe/Zaio-Netflix-landing-page" target="_blank" class="btn btn-outline-dark"><i class="bi bi-code-slash"></i></a>
               </div>
             </div>
@@ -107,7 +119,7 @@
               <div class="card-body">
                 <h5 class="card-title">YouTube Landing Page</h5>
                 <p class="card-text">Built this with HTML, CSS & JavaScript</p>
-                <a href="https://ytmpshe.netlify.app/"target="_blank" class="btn btn-dark">View Website</a>
+                <a href="https://ytmpshe.netlify.app/"target="_blank" class="btn btn-outline-dark">View Website</a>
                 <a href="https://github.com/KhumoMpshe/YouTube-clone-Zaio" class="btn btn-outline-dark"><i class="bi bi-code-slash"></i></a>
               </div>
             </div>
@@ -119,7 +131,7 @@
               <div class="card-body">
                 <h5 class="card-title">Tesla Landing Page</h5>
                 <p class="card-text">Built this with HTML & CSS</p>
-                <a href="https://firstprojectzaio.netlify.app/" target="_blank" class="btn btn-dark">View Website</a>
+                <a href="https://firstprojectzaio.netlify.app/" target="_blank" class="btn btn-outline-dark">View Website</a>
                 <a href="https://github.com/KhumoMpshe/Zaio-Tesla-project" class="btn btn-outline-dark"><i class="bi bi-code-slash"></i></a>
               </div>
             </div>
@@ -131,7 +143,7 @@
               <div class="card-body">
                 <h5 class="card-title">Pine City Zoo Website</h5>
                 <p class="card-text">Built this with HTML & CSS</p>
-                <a href="https://zoompshe.netlify.app/" target="_blank" class="btn btn-dark">View Website</a>
+                <a href="https://zoompshe.netlify.app/" target="_blank" class="btn btn-outline-dark">View Website</a>
                 <a href="https://github.com/KhumoMpshe/Pine-City-Zoo" class="btn btn-outline-dark"><i class="bi bi-code-slash"></i></a>
             </div>
           </div>
@@ -143,7 +155,7 @@
               <div class="card-body">
                 <h5 class="card-title">Marvels Website</h5>
                 <p class="card-text">Built this with HTML & CSS</p>
-                <a href="https://marvelmpshe.netlify.app/" target="_blank" class="btn btn-dark">View Website</a>
+                <a href="https://marvelmpshe.netlify.app/" target="_blank" class="btn btn-outline-dark">View Website</a>
                 <a href="https://github.com/KhumoMpshe/Marvel-Website-FNB-Academy" class="btn btn-outline-dark"><i class="bi bi-code-slash"></i></a>
               </div>
             </div>
@@ -155,7 +167,7 @@
               <div class="card-body">
                 <h5 class="card-title">Calculator</h5>
                 <p class="card-text">Built this with HTML, CSS & JS</p>
-                <a href="https://calcmpshe.netlify.app/" target="_blank" class="btn btn-dark">View Website</a>
+                <a href="https://calcmpshe.netlify.app/" target="_blank" class="btn btn-outline-dark">View Website</a>
                 <a href="https://github.com/KhumoMpshe/Calculator" class="btn btn-outline-dark"><i class="bi bi-code-slash"></i></a>
               </div>
             </div>
@@ -222,12 +234,36 @@
     </footer>
 
     <script>
-        
       window.addEventListener("scroll", () => {
-        const header = document.querySelector("header")
-        header.classList.toggle("scrolling", window.scrollY > 0)
-      })
+        const header = document.querySelector("header");
+        header.classList.toggle("scrolling", window.scrollY > 0);
+      });
 
+      const themeToggleBtn = document.getElementById("theme-toggle");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const storedTheme = localStorage.getItem("theme");
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        if (!themeToggleBtn) return;
+        if (theme === "dark") {
+          themeToggleBtn.innerHTML = '<i class="bi bi-moon-fill me-1"></i><span>Dark</span>';
+        } else {
+          themeToggleBtn.innerHTML = '<i class="bi bi-sun-fill me-1"></i><span>Light</span>';
+        }
+      }
+
+      applyTheme(storedTheme || (prefersDark ? "dark" : "light"));
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+          const nextTheme = currentTheme === "dark" ? "light" : "dark";
+          applyTheme(nextTheme);
+          localStorage.setItem("theme", nextTheme);
+        });
+      }
     </script>
 
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>

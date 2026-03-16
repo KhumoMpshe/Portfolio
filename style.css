@@ -1,12 +1,38 @@
 /* Globals */
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Color variables (light mode by default) */
+:root {
+  --bg-color: gray;
+  --text-color: #212529;
+  --card-bg: #ffffff;
+  --card-border: lightgray;
+  --header-bg: rgba(116, 118, 119, 0.9);
+  --nav-link-color: rgba(255, 255, 255, 0.9);
+  --nav-link-active-border: #adb5bd;
+  --mark-bg: #797fdc26;
+}
+
+/* Dark mode palette – activated via data-theme="dark" on <html> */
+:root[data-theme="dark"] {
+  --bg-color: darkgray;
+  --text-color: #f8f9fa;
+  --card-bg: #282525;
+  --card-border: #1f2937;
+  --header-bg: rgb(73, 73, 77);
+  --nav-link-color: rgba(248, 249, 250, 0.8);
+  --nav-link-active-border: #6366f1;
+  --mark-bg: rgba(99, 102, 241, 0.25);
 }
 
 body {
   overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 /*Header*/
@@ -32,14 +58,14 @@ body {
 .nav-masthead .nav-link {
   padding-left: 0.25rem 0;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--nav-link-color);
   background-color: transparent;
   border-bottom: 0.25rem solid transparent;
 }
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, 0.25);
+  border-bottom-color: var(--nav-link-active-border);
   color: #fff;
 }
 
@@ -49,25 +75,35 @@ body {
 
 .nav-masthead .active {
   color: #fff;
-  border-bottom-color: grey;
+  border-bottom-color: var(--nav-link-active-border);
 }
 
 header {
-  background: grey;
-  opacity: 80%;
+  background: var(--header-bg);
+  opacity: 0.9;
 }
 
 .scrolling {
-  background: grey;
-  opacity: 80%;
+  background: var(--header-bg);
+  opacity: 1;
   transition: all 0.5s;
 }
 
 /* Cards */
 .card {
   padding: 12px 12px;
-  border-radius: 10px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Skills badges (About section) */
+#about-us .badge {
+  background-color: #e9ecef !important;
+  color: #212529 !important;
+  border: 1px solid #ced4da;
 }
 
 .card:hover {
@@ -76,7 +112,7 @@ header {
 }
 
 mark {
-  background-color: #797fdc26;
+  background-color: var(--mark-bg);
   border-radius: 15px;
 }
 
@@ -85,7 +121,257 @@ mark {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+.profile,
+#about-us .profile {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .profile:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(94, 125, 163, 0.621);
+}
+
+/* Print-only styles */
+@media print {
+  /* Use A4/Letter layout with margins */
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+
+  /* Clean, simple text for print */
+  body {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background: #fff !important;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  /* Let content flow normally on the page */
+  body,
+  html {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Remove full-screen hero/first page from print */
+  .banner-wrap {
+    display: none !important;
+  }
+
+  .overlay {
+    display: none !important;
+  }
+
+  /* Turn off hover transforms that can cause odd positions in print */
+  .card,
+  .profile {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide elements you don’t want on the printed résumé */
+  header,
+  footer,
+  nav,
+  .no-print,
+  .buttons,
+  .links-bar {
+    display: none !important;
+  }
+
+  /* Printed heading at top of page 1 */
+  body::before {
+    content: "Portfolio of Khumo Mpshe";
+    display: block;
+    font-size: 16pt;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 0.15in;
+  }
+
+  /* About Me section - keep image, name, and text together and let it fill page 1 */
+  #about-us,
+  #about-us .card,
+  #about-us .card-body,
+  #about-us .row {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Skills should print in dark font */
+  #about-us .badge {
+    background: transparent !important;
+    color: #000 !important;
+    border: 1px solid #000;
+  }
+
+  #about-us {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  #about-us .container {
+    padding-top: 0.2in !important;
+    padding-bottom: 0.2in !important;
+  }
+
+  #about-us .card {
+    margin-bottom: 0.2in !important;
+    min-height: 8in;
+  }
+
+  #about-us .profile {
+    max-width: 2.1in;
+    height: auto;
+  }
+
+  #about-us h1 {
+    font-size: 20pt;
+    margin-bottom: 8px;
+  }
+
+  #about-us .lead {
+    font-size: 13pt;
+    line-height: 1.5;
+  }
+
+  /* Larger sub-headings and general headings on print */
+  h1 {
+    font-size: 22pt;
+  }
+
+  h2 {
+    font-size: 18pt;
+  }
+
+  h3 {
+    font-size: 16pt;
+  }
+
+  /* Start projects on a new page so About Me can fully occupy page 1 */
+  #projects {
+    page-break-before: always;
+    break-before: page;
+    padding-top: 0.2in !important;
+    padding-bottom: 0.2in !important;
+  }
+
+
+  /* Remove the "Let's Connect" page/section from print */
+  #contact {
+    display: none !important;
+  }
+
+  /* Main résumé container (wrap your content in a div.resume) */
+  .resume {
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Layout for print */
+  .container,
+  .row {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* About section stays full-width (handled above). 
+     Projects: two cards per row on print. */
+  #projects .col-md-4 {
+    float: left !important;
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+
+  /* Make all 6 projects fit comfortably on one page (3 rows x 2) */
+  #projects h1 {
+    font-size: 18pt;
+    margin-bottom: 0.15in;
+  }
+
+  #projects .card {
+    margin-bottom: 0.12in;
+    min-height: 1.8in;
+  }
+
+  #projects .card img {
+    max-height: 1in;
+    object-fit: cover;
+  }
+
+  #projects .card-title {
+    font-size: 12pt;
+    margin-bottom: 2px;
+  }
+
+  #projects .card-text {
+    font-size: 10pt;
+    margin-bottom: 3px;
+  }
+
+  /* Make name, email etc. in About Me larger on print */
+  #about-us p {
+    font-size: 13pt;
+  }
+
+  /* Titles/headings: keep wording, just make them clean */
+  h1, h2, h3, h4 {
+    color: #000;
+    margin: 0 0 4px;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 18pt;
+  }
+
+  h2 {
+    font-size: 13pt;
+    text-transform: uppercase; /* remove if you don’t want caps */
+    letter-spacing: 0.05em;
+  }
+
+  h3 {
+    font-size: 11pt;
+  }
+
+  p, li {
+    margin: 0 0 4px;
+  }
+
+  /* Avoid breaking important blocks across pages */
+  .section,
+  .job,
+  .education-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 10px;
+  }
+
+  /* Also keep portfolio cards together on one page */
+  .card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 10px;
+  }
+
+  /* Remove underlines and colors from links in print */
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* Prevent awkward page breaks */
+  * {
+    orphans: 3;
+    widows: 3;
+  }
 }

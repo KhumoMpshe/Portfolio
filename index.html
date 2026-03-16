@@ -253,13 +253,13 @@
         }
       }
 
-      applyTheme(storedTheme || (prefersDark ? "dark" : "light"));
+      applyTheme(storedTheme || (prefersDark ? "light" : "dark"));
 
       if (themeToggleBtn) {
         themeToggleBtn.addEventListener("click", () => {
           const currentTheme =
-            document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-          const nextTheme = currentTheme === "dark" ? "light" : "dark";
+            document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+          const nextTheme = currentTheme === "light" ? "dark" : "light";
           applyTheme(nextTheme);
           localStorage.setItem("theme", nextTheme);
         });

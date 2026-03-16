@@ -5,6 +5,10 @@ padding: 0;
 box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /*Header*/
 .banner-wrap {
   background-image: url(assets/khumobanner.png);

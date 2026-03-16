@@ -15,18 +15,20 @@
   --nav-link-color: rgba(255, 255, 255, 0.9);
   --nav-link-active-border: #adb5bd;
   --mark-bg: #797fdc26;
+  --mark-text: #212529;
 }
 
 /* Dark mode palette – activated via data-theme="dark" on <html> */
 :root[data-theme="dark"] {
-  --bg-color: darkgray;
+  --bg-color: rgb(73, 73, 77);
   --text-color: #f8f9fa;
-  --card-bg: #282525;
-  --card-border: #1f2937;
+  --card-bg: rgb(73, 73, 77);
+  --card-border: rgb(73, 73, 77);
   --header-bg: rgb(73, 73, 77);
   --nav-link-color: rgba(248, 249, 250, 0.8);
   --nav-link-active-border: #6366f1;
-  --mark-bg: rgba(99, 102, 241, 0.25);
+  --mark-bg: #797fdc26;
+  --mark-text: #93c5fd;
 }
 
 body {
@@ -67,6 +69,9 @@ body {
 .nav-masthead .nav-link:focus {
   border-bottom-color: var(--nav-link-active-border);
   color: #fff;
+  background-color: gray;
+  color: white;
+  border-radius: 5px;
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -113,6 +118,7 @@ header {
 
 mark {
   background-color: var(--mark-bg);
+  color: var(--mark-text);
   border-radius: 15px;
 }
 

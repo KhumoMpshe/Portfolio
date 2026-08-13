@@ -106,6 +106,10 @@ body {
     border-bottom-color: var(--nav-link-active-border);
     color: white;
   }
+
+  .nav-masthead .nav-link + .nav-link {
+    margin-left: 1rem;
+  }
 }
 
 /* Mobile Navigation */
@@ -157,10 +161,11 @@ body {
     background-color: rgba(255,255,255,0.1);
     color: white;
   }
-}
 
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
+  .nav-masthead .active {
+    border-bottom-color: transparent;
+    background-color: transparent;
+  }
 }
 
 .nav-masthead .active {

@@ -88,6 +88,48 @@ header {
   opacity: 0.9;
 }
 
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.brand-name {
+  color: #f8f8f8;
+  font-size: 0.82rem;
+  letter-spacing: 0.22rem;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+}
+
+.brand-name--main {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.brand-name--sub {
+  letter-spacing: 0.18rem;
+  opacity: 1;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
+.brand-divider {
+  width: 3px;
+  height: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.15));
+  border-radius: 999px;
+  display: inline-block;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.3);
+}
+
 .scrolling {
   background: var(--header-bg);
   opacity: 1;

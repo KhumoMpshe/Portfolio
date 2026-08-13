@@ -39,16 +39,6 @@
             <a class="nav-link" href="#certifications">Certifications</a>
             <a class="nav-link" href="#contact">Contact</a>
           </nav>
-
-          <a href="resume.html" class="btn btn-outline-light btn-sm ms-2 no-print">
-            <i class="bi bi-printer-fill me-1"></i>
-            Print Resume
-          </a>
-
-          <button id="theme-toggle" class="btn btn-outline-light btn-sm no-print" type="button">
-            <i class="bi bi-sun-fill me-1"></i>
-            <span>Light</span>
-          </button>
         </div>
       </div>
     </header>
@@ -437,6 +427,16 @@
         </div>
     </footer>
 
+    <!-- Floating Action Buttons -->
+    <div class="floating-action-buttons no-print">
+      <a href="resume.html" class="fab fab-primary" title="Print Resume">
+        <i class="bi bi-printer-fill"></i>
+      </a>
+      <button id="theme-toggle" class="fab fab-secondary" type="button" title="Toggle Theme">
+        <i class="bi bi-sun-fill"></i>
+      </button>
+    </div>
+
     <script>
       window.addEventListener("scroll", () => {
         const header = document.querySelector("header");
@@ -451,9 +451,11 @@
         document.documentElement.setAttribute("data-theme", theme);
         if (!themeToggleBtn) return;
         if (theme === "dark") {
-          themeToggleBtn.innerHTML = '<i class="bi bi-moon-fill me-1"></i><span>Dark</span>';
+          themeToggleBtn.innerHTML = '<i class="bi bi-moon-fill"></i>';
+          themeToggleBtn.title = "Toggle to Light Mode";
         } else {
-          themeToggleBtn.innerHTML = '<i class="bi bi-sun-fill me-1"></i><span>Light</span>';
+          themeToggleBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+          themeToggleBtn.title = "Toggle to Dark Mode";
         }
       }
 

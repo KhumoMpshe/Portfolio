@@ -31,15 +31,16 @@
           <span class="brand-divider"></span>
           <span class="brand-name brand-name--sub">MPSHE</span>
         </div>
-        <div class="d-flex align-items-center flex-wrap gap-2">
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="#about-us">About</a>
-            <a class="nav-link" href="#projects">Projects</a>
-            <a class="nav-link" href="#certifications">Certifications</a>
-            <a class="nav-link" href="#contact">Contact</a>
-          </nav>
-        </div>
+        <button class="navbar-toggler" type="button" id="nav-toggle" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+        <nav class="nav nav-masthead justify-content-center" id="nav-menu">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" href="#about-us">About</a>
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#certifications">Certifications</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
       </div>
     </header>
 
@@ -438,6 +439,22 @@
     </div>
 
     <script>
+      // Mobile Menu Toggle
+      const navToggle = document.getElementById("nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
+      const navLinks = navMenu.querySelectorAll(".nav-link");
+
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+
+      // Close menu when a link is clicked
+      navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+        });
+      });
+
       window.addEventListener("scroll", () => {
         const header = document.querySelector("header");
         header.classList.toggle("scrolling", window.scrollY > 0);
